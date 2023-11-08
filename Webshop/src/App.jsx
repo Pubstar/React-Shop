@@ -25,6 +25,16 @@ function App() {
     setShoppingCart([...shoppingCart, {id: item.id, name: item.name, price: item.price}]);
   }
 
+  function updatePrice() {
+    let totalPrice = 0;
+
+    shoppingCart.forEach(item => {
+      totalPrice += item.price
+    })
+
+    return totalPrice
+  }
+
   function removeFromCart(item) {
     let newCart = [...shoppingCart];
     let itemFound = false;
@@ -40,7 +50,6 @@ function App() {
   }
 
   return (
-
     <div className='container'>
       <div className='items-container'>
      {items.map(item => {
@@ -57,6 +66,7 @@ function App() {
       {shoppingCart.map((item,idx) => {
         return <p key={idx} onClick={() => {removeFromCart(item)}}>{item.name} - ${item.price}</p>
       })}
+      <p>Total Price: ${updatePrice()}</p>
      </div>
     </div>
   )
