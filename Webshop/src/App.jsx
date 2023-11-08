@@ -25,6 +25,20 @@ function App() {
     setShoppingCart([...shoppingCart, {id: item.id, name: item.name, price: item.price}]);
   }
 
+  function removeFromCart(item) {
+    let newCart = [...shoppingCart];
+    let itemFound = false;
+    shoppingCart.forEach((x,idx) => {
+      if(x.id == item.id && !itemFound) {
+        newCart.splice(idx, 1);
+        itemFound = true;
+        return;
+      }
+      idx++;
+    })
+    setShoppingCart(newCart);
+  }
+
   return (
 
     <div className='container'>
@@ -41,7 +55,7 @@ function App() {
      <div className='shopping-cart'>
       <h2>Shopping Cart</h2>
       {shoppingCart.map((item,idx) => {
-        return <p key={idx}>{item.name} - ${item.price}</p>
+        return <p key={idx} onClick={() => {removeFromCart(item)}}>{item.name} - ${item.price}</p>
       })}
      </div>
     </div>
