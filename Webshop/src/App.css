@@ -4,31 +4,6 @@
     box-sizing: border-box;
 }
 
-.container {
-    padding: 5%;
-    display: flex;
-    justify-content: space-evenly;
-    height: 100vh;
-}
-
-.items-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-}
-
 .item-frame {
-    background-color: aliceblue;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    align-items: center;
-    border: 1px solid black;
-}
-
-.shopping-cart {
-    border: 1px solid black;
-    padding: 50px;
+    padding: 10px;
 }
