@@ -88,12 +88,22 @@ function App() {
           </Card>
         })}
         </div>
-        <div className='col-sm-4 mt-5 border border-primary p-4'>
+        <div className='col-sm-4 mt-5 border border-primary p-4 position-relative'>
             <h2>Shopping Cart</h2>
             {shoppingCart.map((item,idx) => {
-              return <p key={idx} onClick={() => {removeFromCart(item)}}>{item.name} - ${item.price} - {item.quantity}</p>
+              return <Card border='primary' className='mt-5' key={idx}>
+                <Card.Body>
+                <Card.Title>{item.name}</Card.Title>
+                <Card.Text>${item.price}/per item</Card.Text>
+                </Card.Body>
+                <Card.Footer className='d-flex justify-content-between align-items-center px-5'>
+                  <Button variant='danger w-25' onClick={() => {removeFromCart(item)}}>-</Button>
+                  {item.quantity}
+                  <Button variant='success w-25' onClick={() => {addToCart(item)}}>+</Button>
+                </Card.Footer>
+                </Card>
             })}
-            <p>Total Price: ${updateTotalPrice()}</p>
+            <p className='position-absolute bottom-0'>Total Price: ${updateTotalPrice()}</p>
         </div>
       </Row>
     </div>
