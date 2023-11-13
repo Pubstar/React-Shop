@@ -59,9 +59,14 @@ function App() {
     let itemFound = false;
     shoppingCart.forEach((x,idx) => {
       if(x.id == item.id && !itemFound) {
-        newCart.splice(idx, 1);
-        itemFound = true;
-        return;
+        if(item.quantity > 1) {
+          newCart[idx].quantity -= 1;
+          return;
+        } else {
+          newCart.splice(idx, 1);
+          itemFound = true;
+          return;
+        }
       }
     })
     setShoppingCart(newCart);
