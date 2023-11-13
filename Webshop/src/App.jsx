@@ -31,8 +31,17 @@ function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
 
   function updateCart(item) {
-    item.quantity +=1;
-    setShoppingCart([...shoppingCart, {id: item.id, name: item.name, price: item.price, quantity: item.quantity}]);
+    let itemUpdated = false;
+    shoppingCart.forEach(cartItem => {
+      if (item.id == cartItem.id && !itemUpdated) {
+        cartItem.quantity += 1;
+        setShoppingCart([...shoppingCart]);
+        itemUpdated = true;
+        return;
+      }
+    })
+
+    if(!itemUpdated) setShoppingCart([...shoppingCart, {id: item.id, name: item.name, price: item.price, quantity: 1}]);
   }
 
   function updatePrice() {
@@ -54,7 +63,6 @@ function App() {
         itemFound = true;
         return;
       }
-      idx++;
     })
     setShoppingCart(newCart);
   }
@@ -69,7 +77,7 @@ function App() {
             <div key={item.id} className='item-frame'>
               <Card.Title>{item.name}</Card.Title>
               <Card.Text>${item.price}</Card.Text>
-              <Button className='mt-5' variant='primary' onClick={() => updateCart(item)}>Add to Cart</Button>
+              <Button className='mt-5' variant='primary' onClick={() => {updateCart(item)}}>Add to Cart</Button>
             </div>
           </Card.Body>
           </Card>
