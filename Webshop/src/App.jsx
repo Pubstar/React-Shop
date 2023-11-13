@@ -30,7 +30,7 @@ function App() {
 
   const [shoppingCart, setShoppingCart] = useState([]);
 
-  function updateCart(item) {
+  function addToCart(item) {
     let itemUpdated = false;
     shoppingCart.forEach(cartItem => {
       if (item.id == cartItem.id && !itemUpdated) {
@@ -44,11 +44,11 @@ function App() {
     if(!itemUpdated) setShoppingCart([...shoppingCart, {id: item.id, name: item.name, price: item.price, quantity: 1}]);
   }
 
-  function updatePrice() {
+  function updateTotalPrice() {
     let totalPrice = 0;
 
     shoppingCart.forEach(item => {
-      totalPrice += item.price
+      totalPrice += (item.price * item.quantity)
     })
 
     return totalPrice
@@ -77,7 +77,7 @@ function App() {
             <div key={item.id} className='item-frame'>
               <Card.Title>{item.name}</Card.Title>
               <Card.Text>${item.price}</Card.Text>
-              <Button className='mt-5' variant='primary' onClick={() => {updateCart(item)}}>Add to Cart</Button>
+              <Button className='mt-5' variant='primary' onClick={() => {addToCart(item)}}>Add to Cart</Button>
             </div>
           </Card.Body>
           </Card>
@@ -88,7 +88,7 @@ function App() {
             {shoppingCart.map((item,idx) => {
               return <p key={idx} onClick={() => {removeFromCart(item)}}>{item.name} - ${item.price} - {item.quantity}</p>
             })}
-            <p>Total Price: ${updatePrice()}</p>
+            <p>Total Price: ${updateTotalPrice()}</p>
         </div>
       </Row>
     </div>
