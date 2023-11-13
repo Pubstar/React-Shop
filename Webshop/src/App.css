@@ -7,3 +7,7 @@
 .item-frame {
     padding: 10px;
 }
+
+.container-fluid {
+    height: 100vh;
+}

@@ -12,23 +12,27 @@ function App() {
   const items = [{
     id: 0,
     price: 20,
-    name: 'Chair'
+    name: 'Chair',
+    quantity: 0
   },
   {
     id: 1,
     price: 50,
-    name: 'Couch'
+    name: 'Couch',
+    quantity: 0
   },
   {
     id: 2,
     price: 200,
-    name: 'Desk'
+    name: 'Desk',
+    quantity: 0
   }]
 
   const [shoppingCart, setShoppingCart] = useState([]);
 
   function updateCart(item) {
-    setShoppingCart([...shoppingCart, {id: item.id, name: item.name, price: item.price}]);
+    item.quantity +=1;
+    setShoppingCart([...shoppingCart, {id: item.id, name: item.name, price: item.price, quantity: item.quantity}]);
   }
 
   function updatePrice() {
@@ -56,9 +60,9 @@ function App() {
   }
 
   return (
-    <Container>
+    <div className='container'>
       <Row>
-        <Col>
+        <div className='col-sm-8'>
         {items.map(item => {
           return <Card border='primary' className='w-50 m-5'>
             <Card.Body>
@@ -70,16 +74,16 @@ function App() {
           </Card.Body>
           </Card>
         })}
-        </Col>
-        <Col className='col-sm-4 mt-5 border border-primary p-4'>
+        </div>
+        <div className='col-sm-4 mt-5 border border-primary p-4'>
             <h2>Shopping Cart</h2>
             {shoppingCart.map((item,idx) => {
-              return <p key={idx} onClick={() => {removeFromCart(item)}}>{item.name} - ${item.price}</p>
+              return <p key={idx} onClick={() => {removeFromCart(item)}}>{item.name} - ${item.price} - {item.quantity}</p>
             })}
             <p>Total Price: ${updatePrice()}</p>
-        </Col>
+        </div>
       </Row>
-    </Container>
+    </div>
   )
 }
 
