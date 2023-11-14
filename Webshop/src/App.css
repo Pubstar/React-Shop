@@ -4,10 +4,25 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color:rgba(255, 0, 0, 0.061);
+}
+
 .item-frame {
     padding: 10px;
 }
 
 .container-fluid {
     height: 100vh;
+}
+
+.itemCardFooterPrice {
+    font-size: 24px;
+    font-weight: 200;
+    font-style: italic;
+    letter-spacing: 2.5px;
+}
+
+.shopping-cart {
+    background-color: white;
 }

@@ -3,9 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 function App() {
 
@@ -77,29 +75,33 @@ function App() {
       <Row>
         <div className='col-sm-8'>
         {items.map(item => {
-          return <Card border='primary' className='w-50 m-5'>
+          return <Card className='m-5'>
             <Card.Body>
             <div key={item.id} className='item-frame'>
               <Card.Title>{item.name}</Card.Title>
-              <Card.Text>${item.price}</Card.Text>
-              <Button className='mt-5' variant='primary' onClick={() => {addToCart(item)}}>Add to Cart</Button>
+              <Card.Text> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione culpa, dolores dicta vel perspiciatis unde nesciunt saepe vitae rerum doloremque veritatis, sapiente sit? Laboriosam quam et expedita velit, quidem vero! </Card.Text>
+              <Card.Footer className='d-flex justify-content-between align-items-center px-5 py-3 p-sm-3'>
+                <span className='font-weight-bold itemCardFooterPrice'>${item.price}</span>
+                
+                <Button variant='primary' onClick={() => {addToCart(item)}}>Add to Cart</Button>
+                </Card.Footer>
             </div>
           </Card.Body>
           </Card>
         })}
         </div>
-        <div className='col-sm-4 mt-5 border border-primary p-4 position-relative'>
+        <div className='col-sm-4 mt-5 mb-5 border p-4 position-relative shopping-cart'>
             <h2>Shopping Cart</h2>
             {shoppingCart.map((item,idx) => {
-              return <Card border='primary' className='mt-5' key={idx}>
+              return <Card className='mb-5 mt-1' key={idx}>
                 <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>${item.price}/per item</Card.Text>
                 </Card.Body>
-                <Card.Footer className='d-flex justify-content-between align-items-center px-5'>
-                  <Button variant='danger w-25' onClick={() => {removeFromCart(item)}}>-</Button>
+                <Card.Footer className='d-flex justify-content-between align-items-center px-5 p-sm-2'>
+                  <Button variant='danger w-20' onClick={() => {removeFromCart(item)}}>-</Button>
                   {item.quantity}
-                  <Button variant='success w-25' onClick={() => {addToCart(item)}}>+</Button>
+                  <Button variant='success w-20' onClick={() => {addToCart(item)}}>+</Button>
                 </Card.Footer>
                 </Card>
             })}
