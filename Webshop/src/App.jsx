@@ -21,6 +21,12 @@ function App() {
   },
   {
     id: 2,
+    price: 500,
+    name: 'Bed',
+    quantity: 0
+  },
+  {
+    id: 3,
     price: 200,
     name: 'Desk',
     quantity: 0
@@ -71,11 +77,34 @@ function App() {
   }
 
   return (
+    <>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div className='container'>
-      <Row>
-        <div className='col-sm-8'>
+      <Row className='d-flex justify-content-center'>
+        <div className='col-sm-9 d-flex gap-3 flex-wrap justify-content-center'>
         {items.map(item => {
-          return <Card className='m-5'>
+          return <Card className='my-5 itemCard'>
             <Card.Body>
             <div key={item.id} className='item-frame'>
               <Card.Title>{item.name}</Card.Title>
@@ -83,15 +112,15 @@ function App() {
               <Card.Footer className='d-flex justify-content-between align-items-center px-5 py-3 p-sm-3'>
                 <span className='font-weight-bold itemCardFooterPrice'>${item.price}</span>
                 
-                <Button variant='primary' onClick={() => {addToCart(item)}}>Add to Cart</Button>
+                <Button variant='primary' className='p-2' onClick={() => {addToCart(item)}}>Add to Cart</Button>
                 </Card.Footer>
             </div>
           </Card.Body>
           </Card>
         })}
         </div>
-        <div className='col-sm-4 mt-5 mb-5 border p-4 position-relative shopping-cart'>
-            <h2>Shopping Cart</h2>
+        <div className='col-sm-3 mt-5 mb-5 border p-4 position-relative shopping-cart m-auto'>
+            <h2 className='mb-5'>Shopping Cart</h2>
             {shoppingCart.map((item,idx) => {
               return <Card className='mb-5 mt-1' key={idx}>
                 <Card.Body>
@@ -109,6 +138,7 @@ function App() {
         </div>
       </Row>
     </div>
+    </>
   )
 }
 

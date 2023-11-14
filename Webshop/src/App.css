@@ -8,12 +8,12 @@ body {
     background-color:rgba(255, 0, 0, 0.061);
 }
 
-.item-frame {
-    padding: 10px;
+.itemCard {
+    width: 300px;
 }
 
-.container-fluid {
-    height: 100vh;
+.item-frame {
+    padding: 10px;
 }
 
 .itemCardFooterPrice {
@@ -21,8 +21,10 @@ body {
     font-weight: 200;
     font-style: italic;
     letter-spacing: 2.5px;
+    margin-right: 20px;
 }
 
 .shopping-cart {
     background-color: white;
+    min-width: 300px;
 }
